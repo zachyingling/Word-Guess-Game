@@ -1,0 +1,59 @@
+body {
+    background-color: aqua;
+    margin: 0px;
+}
+
+.clear {
+    clear: both;
+}
+
+/* Header Properties */
+header {
+    background-color: grey;
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 50px;
+}
+
+#hangman-header {
+    font-family: 'Lily Script One', cursive;
+    margin: 0px;
+}
+
+#game-header {
+    font-family: 'Bungee Hairline', cursive;
+    margin: 0px;
+}
+
+/* Main Content Properties */
+.container {
+    margin: 0px auto;
+    width: 80%;
+    height: auto;
+    border: indigo dotted 10px;
+}
+
+.left-row, .right-row {
+    width: calc(50% - 10px);
+    height: auto;
+    border: black solid 5px;
+}
+
+.left-row {
+    float: left;
+}
+
+.right-row {
+    float: right;
+    text-align: center;
+}
+
+.left-row img {
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+.right-row p {
+    font-size: 2rem;
+}
