@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head lang="en-us">
-        <meta charset="UTF-8">
-        <title>Word Guessing Game</title>
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <script src="assets/javascript/game.js"></script>
-        <!-- Custom Google fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Lily+Script+One&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <h1 id="hangman-header">Hangman</h1>
-            <h2 id="game-header">Modern Video Games</h2>
-        </header>
-        <div class="container">
-            <div class="left-row">
-                <img src="assets/images/hangman.png" alt="hangman pic">
-            </div>
-            <div class="right-row">
-                <p>Press any key to get started!</p>
-                <p>Wins: </p>
-                <p>Current Word</p>
-                <p id="current-word">_ _ _ _ _ _</p>
-                <p>Number of guesses remaining</p>
-                <p id="guess-number">12</p>
-                <p>Letters already guessed</p>
-                <p></p>
-            </div>
-            <br class="clear">
-        </div>
-    </body>
+  <head lang="en-us">
+    <meta charset="UTF-8" />
+    <title>Word Guessing Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <!-- Custom Google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Lily+Script+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1 id="hangman-header">Hangman</h1>
+      <h2 id="game-header">Modern Video Games</h2>
+    </header>
+    <div class="container">
+      <div class="left-row">
+        <img src="assets/images/hangman.png" alt="hangman pic" />
+      </div>
+      <div class="right-row">
+        <p>Press any key to get started!</p>
+        <p>Wins: <span id="win-number"></span></p>
+        <p>Current Word</p>
+        <p id="current-word">_ _ _ _ _ _</p>
+        <p>Number of guesses remaining</p>
+        <p id="guess-number">12</p>
+        <p>Letters already guessed</p>
+        <p id="letters-guessed"></p>
+      </div>
+      <br class="clear" />
+    </div>
+  </body>
+  <script src="assets/javascript/game.js"></script>
 </html>
