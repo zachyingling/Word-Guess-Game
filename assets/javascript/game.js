@@ -1,8 +1,14 @@
 var numGuesses = 12;
 var currentWins = 0;
-var listOfGames = ["OVERWATCH", "HALO", "SKYRIM", "PACMAN"];
+var listOfGames = ["OVERWATCH", "HALO", "SKYRIM"];
 var eachCharacterOfGames = [];
 var letterPresses = [];
+var images = [
+  "assets/images/overwatch.jpg",
+  "assets/images/halo.jpg",
+  "assets/images/skyrim.jpg"
+];
+var currentImage = "";
 var characterFound = false;
 var currentLetter = true;
 var currentWord = "";
@@ -17,6 +23,7 @@ renderWord();
 function renderWord() {
   randomNumber = Math.floor(Math.random() * 3);
   currentWord = listOfGames[randomNumber];
+  currentImage = images[randomNumber];
   for (var i = 0; i < currentWord.length; i++) {
     eachCharacterOfGames.push(currentWord.charAt(i));
     updatedWord.push("_");
@@ -24,6 +31,10 @@ function renderWord() {
   }
 
   document.querySelector("#current-word").innerHTML = wordOutput;
+}
+
+function updateImage() {
+  document.querySelector("#game-image").src = currentImage;
 }
 
 function updateWins() {
@@ -103,6 +114,7 @@ document.onkeypress = function(event) {
   updateGuesses(event);
   if (!updatedWord.includes("_")) {
     alert("You won! The word was (" + wordOutput + ")");
+    updateImage();
     updateWins();
     restartGame();
   }
