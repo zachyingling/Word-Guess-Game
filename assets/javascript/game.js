@@ -1,27 +1,29 @@
 var numGuesses = 12;
 var currentWins = 0;
-var listOfGames = ["OVERWATCH", "HALO", "BATTLEFIELD"];
+var listOfGames = ["OVERWATCH", "HALO", "SKYRIM", "PACMAN"];
 var eachCharacterOfGames = [];
 var letterPresses = [];
+var characterFound = false;
 var currentLetter = true;
 var currentWord = "";
-var restart = false;
-var winIndicator = false;
-var blankWord = "";
+var updatedWord = [];
+var wordOutput = "";
 var randomNumber = 0;
+var temp = 0;
 
-// renderWord();
-// updateWins();
+updateWins();
+renderWord();
 
 function renderWord() {
   randomNumber = Math.floor(Math.random() * 3);
-  blankWord = "";
   currentWord = listOfGames[randomNumber];
   for (var i = 0; i < currentWord.length; i++) {
     eachCharacterOfGames.push(currentWord.charAt(i));
-    blankWord = blankWord + "_ ";
+    updatedWord.push("_");
+    wordOutput += updatedWord[i] + " ";
   }
-  document.querySelector("#current-word").innerHTML = blankWord;
+
+  document.querySelector("#current-word").innerHTML = wordOutput;
 }
 
 function updateWins() {
@@ -34,6 +36,8 @@ function restartGame() {
   numGuesses = 12;
   letterPresses = [];
   eachCharacterOfGames = [];
+  updatedWord = [];
+  wordOutput = "";
   document.querySelector("#guess-number").innerHTML = numGuesses.toString();
   document.querySelector("#letters-guessed").innerHTML = "";
   renderWord();
@@ -71,14 +75,35 @@ function updateGuesses(letter) {
 
 function updateWord(letter) {
   for (var i = 0; i < eachCharacterOfGames.length; i++) {
-    if (eachCharacterOfGames[i] === letter.key) {
+    if (
+      eachCharacterOfGames[i] === letter.key.toUpperCase() &&
+      !letterPresses.includes(letter.key.toUpperCase())
+    ) {
+      characterFound = true;
+      break;
     } else {
-      return;
+      characterFound = false;
     }
+  }
+
+  if (characterFound === true) {
+    numGuesses++;
+    document.querySelector("#guess-number").innerHTML = numGuesses.toString();
+    wordOutput = "";
+    updatedWord[i] = eachCharacterOfGames[i];
+    for (var j = 0; j < updatedWord.length; j++) {
+      wordOutput += updatedWord[j] + " ";
+    }
+    document.querySelector("#current-word").innerHTML = wordOutput;
   }
 }
 
 document.onkeypress = function(event) {
-  updateGuesses(event);
   updateWord(event);
+  updateGuesses(event);
+  if (!updatedWord.includes("_")) {
+    alert("You won! The word was (" + wordOutput + ")");
+    updateWins();
+    restartGame();
+  }
 };
